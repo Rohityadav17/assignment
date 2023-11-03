@@ -3,33 +3,18 @@ package com.weather.weatherwebservice.entity;
 import java.util.List;
 
 public class WeatherData {
-    private Temperature temp;
-    private int pressure;
-    private int humidity;
+    private MainData main;
     private List<WeatherInfo> weather;
+    private Clouds clouds;
+    private Wind wind;
+    private int visibility;
 
-    public Temperature getTemp() {
-        return temp;
+    public MainData getMain() {
+        return main;
     }
 
-    public void setTemp(Temperature temp) {
-        this.temp = temp;
-    }
-
-    public int getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(int pressure) {
-        this.pressure = pressure;
-    }
-
-    public int getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
+    public void setMain(MainData main) {
+        this.main = main;
     }
 
     public List<WeatherInfo> getWeather() {
@@ -39,4 +24,29 @@ public class WeatherData {
     public void setWeather(List<WeatherInfo> weather) {
         this.weather = weather;
     }
+
+    public Clouds getClouds() {
+        return clouds;
+    }
+
+    public void setClouds(Clouds clouds) {
+        this.clouds = clouds;
+    }
+
+    public Wind getWind() {
+        return wind;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
+    public int getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(int visibility) {
+        this.visibility = visibility;
+    }
+
 }

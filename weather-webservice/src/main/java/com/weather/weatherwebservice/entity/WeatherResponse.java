@@ -2,8 +2,7 @@ package com.weather.weatherwebservice.entity;
 
 import java.util.List;
 
-
-public class WeatherForecast {
+public class WeatherResponse {
     private List<WeatherData> list;
 
     public List<WeatherData> getList() {
@@ -14,4 +13,3 @@ public class WeatherForecast {
         this.list = list;
     }
 }
-
