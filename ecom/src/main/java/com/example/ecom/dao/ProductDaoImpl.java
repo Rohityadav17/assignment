@@ -25,18 +25,10 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public int saveProductByJdbcTamplate(Product p) {
-		System.out.println("Inside Dao layer...");
-
-//		String query = "insert into product(product_name, cost, color, storage, ram, operator, rating) "
-//				+ "values('"+p.getProductName()+"', '"+p.getCost()+"', '"+p.getColor()+"', "
-//						+ "'"+p.getStorage()+"', '"+p.getRam()+"', '"+p.getOperator()+"', '"+p.getRating()+"')";
-//		
-//		int result = this.jdbcTemplate.update(query);
-
 		String query = "insert into products(product_id,product_name, product_cost,category,description) values(?,?,?,?,?)";
 		int result = this.jdbcTemplate.update(query, p.getProductId(), p.getProductName(), p.getProductCost(),
 				p.getProductCategory(), p.getProductDescription());
-		System.out.println("Product Added..");
+		System.out.println("Product Inserted");
 		return result;
 
 	}

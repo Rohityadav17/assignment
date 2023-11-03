@@ -1,6 +1,7 @@
 package com.example.ecom.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.ecom.exception.ProductNotFoundException;
@@ -11,17 +12,23 @@ import com.example.ecom.service.ProductService;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 // business logic for products service
 @Service
 public class ProductServiceImpl implements ProductService {
 
 	private ProductRepo productsRepository;
+	
 	private ProductDao productDao;
-
+	
 	@Autowired
-	public ProductServiceImpl(ProductRepo productsRepository, ProductDao productDao) {
-		this.productsRepository = productsRepository;
-		this.productDao = productDao;
+	 public ProductServiceImpl(ProductDao productDao) {
+	     this.productDao = productDao;
+	 }
+
+	public ProductServiceImpl() {
+		
 	}
 
 	public ProductServiceImpl(ProductRepo productsRepository) {
