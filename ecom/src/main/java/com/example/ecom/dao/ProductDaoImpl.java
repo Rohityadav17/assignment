@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import com.example.ecom.entity.Product;
 import com.example.ecom.exception.ProductNotFoundException;
 
+@Component
 public class ProductDaoImpl implements ProductDao {
 	
 	@Autowired
