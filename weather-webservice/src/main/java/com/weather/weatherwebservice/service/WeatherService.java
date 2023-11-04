@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.weather.weatherwebservice.entity.WeatherData;
-import com.weather.weatherwebservice.entity.WeatherResponse;
+import com.weather.weatherwebservice.pojo.WeatherData;
+import com.weather.weatherwebservice.pojo.WeatherResponse;
 
 @Service
 public class WeatherService {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.weather.weatherwebservice.entity.WeatherData;
+import com.weather.weatherwebservice.pojo.WeatherData;
 import com.weather.weatherwebservice.service.WeatherService;
 
 @RestController

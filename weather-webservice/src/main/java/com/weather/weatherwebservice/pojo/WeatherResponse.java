@@ -1,4 +1,4 @@
-package com.weather.weatherwebservice.entity;
+package com.weather.weatherwebservice.pojo;
 
 import java.util.List;
 
