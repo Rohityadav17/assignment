@@ -1,5 +1,6 @@
 package com.example.ecom.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecom.entity.Product;
@@ -24,7 +26,6 @@ import com.example.ecom.service.impl.ProductServiceImpl;
 @CrossOrigin
 public class ProductController {
 
-	// injects the object dependency
 	@Autowired
 	private ProductServiceImpl productsService;
 
@@ -60,39 +61,13 @@ public class ProductController {
 
 	// read
 	@GetMapping("/show")
-	public List<Product> getAllProducts() {
-		return productsService.showAllProducts();
-	}
-
-	// jdbc template-----------------------
-
-	@PostMapping("/addjdbc")
-	public int saveProduct(@Validated @RequestBody Product products) {
-		if (products == null || products.getProductName() == null || products.getProductCost() <= 0) {
-			throw new IllegalArgumentException("Product data is invalid");
+	public List<Product> getAllProducts(@RequestParam(value = "pageNumber") Integer pageNumber,
+			@RequestParam(value = "pageSize") Integer pageSize) {
+		System.out.println("PageNumber: " + pageNumber + " PageSize:" + pageSize);
+		if (pageNumber == null || pageSize == null) {
+			return Collections.emptyList();
 		}
-
-		return productsService.saveProduct(products);
-	}
-
-	@PutMapping("/updatejdbc")
-	public Product updateProductById(@Validated @RequestBody Product products) throws ProductNotFoundException {
-		return productsService.updateProductById(products);
-	}
-
-	@DeleteMapping("/delete/{productsId}")
-	public String deleteProducts(@PathVariable int productsId) throws ProductNotFoundException {
-		return productsService.deleteProductById(productsId);
-	}
-
-	@GetMapping("/getproduct/{productsId}")
-	public Product getProduct(@PathVariable Integer productsId) throws ProductNotFoundException {
-		return productsService.getProduct(productsId);
-	}
-
-	@GetMapping("/showproducts")
-	public List<Product> getProducts() {
-		return productsService.getProducts();
+		return productsService.showAllProducts(pageNumber, pageSize);
 	}
 
 }

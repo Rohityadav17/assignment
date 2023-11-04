@@ -2,6 +2,9 @@ package com.example.ecom.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.ecom.exception.ProductNotFoundException;
@@ -10,31 +13,22 @@ import com.example.ecom.entity.Product;
 import com.example.ecom.repository.ProductRepo;
 import com.example.ecom.service.ProductService;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-// business logic for products service
 @Service
 public class ProductServiceImpl implements ProductService {
 
-	private ProductRepo productsRepository;
-	
-	private ProductDao productDao;
-	
 	@Autowired
-	 public ProductServiceImpl(ProductDao productDao) {
-	     this.productDao = productDao;
-	 }
+	private ProductRepo productsRepository;
+
 
 	public ProductServiceImpl() {
-		
-	}
 
-	public ProductServiceImpl(ProductRepo productsRepository) {
-		this.productsRepository = productsRepository;
 	}
-
+	
 	@Override
 	public Product addProducts(Product products) {
 		return productsRepository.save(products);
@@ -70,41 +64,30 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> showAllProducts() {
-		return productsRepository.findAll();
+	public List<Product> showAllProducts(Integer pageNumber, Integer pageSize) {
+		if (pageNumber == null || pageSize == null || pageNumber < 0 || pageSize <= 0) {
+			if (pageNumber == null || pageSize == null) {
+				// Handle the case where pageNumber or pageSize is null
+				return Collections.emptyList();
+			}
+			return Collections.emptyList();
+		}
+
+		try {
+			Pageable p = PageRequest.of(pageNumber, pageSize);
+			Page<Product> pageProduct = productsRepository.findAll(p);
+
+			if (pageProduct != null) {
+				return pageProduct.getContent();
+			} else {
+				// Handle the case when pageProduct is null, e.g., return an empty list .
+				return Collections.emptyList();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
 	}
 
-	// -------JDBC Template----
-	@Override
-	public int saveProduct(Product p) {
-		int result = productDao.saveProductByJdbcTamplate(p);
-		return result;
-	}
 
-	@Override
-	public Product updateProductById(Product newDetails) {
-		int result = productDao.updateProductByJdbcTemplate(newDetails);
-		return null;
-	}
-
-	@Override
-	public String deleteProductById(int id) {
-		int result = productDao.deleteProductByJdbcTemplate(id);
-		if (result == 1)
-			return "Product with id " + id + " deleted successsfully!!!";
-		else
-			return "Product not exist !!";
-	}
-
-	@Override
-	public Product getProduct(int productsId) throws ProductNotFoundException {
-		return productDao.getProduct(productsId);
-
-	}
-
-	public List<Product> getProducts() {
-		return productDao.getProducts();
-	}
-
-	// JDBC TEmplate end
 }

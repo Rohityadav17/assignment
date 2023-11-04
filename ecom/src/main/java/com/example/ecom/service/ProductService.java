@@ -6,26 +6,18 @@ import com.example.ecom.exception.ProductNotFoundException;
 import com.example.ecom.entity.Product;
 import com.example.ecom.entity.User;
 
-// custom service declarations
 public interface ProductService {
 
-    public Product addProducts(Product Products);
+	Product addProducts(Product products);
 
-    public Product viewProducts(Product Products) throws ProductNotFoundException;
+	Product viewProducts(Product Products) throws ProductNotFoundException;
 
-    public Product updateProducts(Product Products) throws ProductNotFoundException;
+	Product updateProducts(Product products) throws ProductNotFoundException;
 
-    public Product deleteProducts(int id) throws ProductNotFoundException;
+	Product deleteProducts(int productId) throws ProductNotFoundException;
 
-    public List<Product> showAllProducts();
+	List<Product> showAllProducts(Integer pageNumber, Integer pageSize);
 
-	int saveProduct(Product p);
-
-	Product updateProductById(Product newDetails);
-
-	String deleteProductById(int id);
-
-
-	Product getProduct(int product_Id) throws ProductNotFoundException;
+   
 
 }
