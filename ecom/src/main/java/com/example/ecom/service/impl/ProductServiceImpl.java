@@ -1,22 +1,18 @@
 package com.example.ecom.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.example.ecom.exception.ProductNotFoundException;
-import com.example.ecom.dao.ProductDao;
 import com.example.ecom.entity.Product;
 import com.example.ecom.repository.ProductRepo;
 import com.example.ecom.service.ProductService;
-
 import java.util.Collections;
 import java.util.List;
 
-import javax.sql.DataSource;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -64,29 +60,36 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> showAllProducts(Integer pageNumber, Integer pageSize) {
-		if (pageNumber == null || pageSize == null || pageNumber < 0 || pageSize <= 0) {
-			if (pageNumber == null || pageSize == null) {
-				// Handle the case where pageNumber or pageSize is null
-				return Collections.emptyList();
-			}
-			return Collections.emptyList();
-		}
+	public List<Product> showAllProducts(Integer pageNumber, Integer pageSize, String sortField, String sortOrder) {
+	    if (pageNumber == null || pageSize == null || pageNumber < 0 || pageSize <= 0) {
+	        return Collections.emptyList();
+	    }
 
-		try {
-			Pageable p = PageRequest.of(pageNumber, pageSize);
-			Page<Product> pageProduct = productsRepository.findAll(p);
+	    try {
+	        Sort sort;
+	        switch (sortOrder.toLowerCase()) {
+	            case "ascending":
+	                sort = Sort.by(sortField).ascending();
+	                break;
+	            case "descending":
+	                sort = Sort.by(sortField).descending();
+	                break;
+	            default:
+	               sort = Sort.by(sortField).ascending();;
+	        }
 
-			if (pageProduct != null) {
-				return pageProduct.getContent();
-			} else {
-				// Handle the case when pageProduct is null, e.g., return an empty list .
-				return Collections.emptyList();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Collections.emptyList();
-		}
+	        Pageable p = PageRequest.of(pageNumber, pageSize, sort);
+	        Page<Product> pageProduct = productsRepository.findAll(p);
+
+	        if (pageProduct != null) {
+	            return pageProduct.getContent();
+	        } else {
+	            return Collections.emptyList();
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return Collections.emptyList();
+	    }
 	}
 
 

@@ -62,12 +62,15 @@ public class ProductController {
 	// read
 	@GetMapping("/show")
 	public List<Product> getAllProducts(@RequestParam(value = "pageNumber") Integer pageNumber,
-			@RequestParam(value = "pageSize") Integer pageSize) {
-		System.out.println("PageNumber: " + pageNumber + " PageSize:" + pageSize);
-		if (pageNumber == null || pageSize == null) {
-			return Collections.emptyList();
-		}
-		return productsService.showAllProducts(pageNumber, pageSize);
+	        @RequestParam(value = "pageSize") Integer pageSize,
+	        @RequestParam(value = "sortField", required = false, defaultValue = "productId") String sortField,
+	        @RequestParam(value = "sortOrder", required = false, defaultValue = "ascending") String sortOrder) {
+	    System.out.println("PageNumber: " + pageNumber + " PageSize:" + pageSize);
+	    if (pageNumber == null || pageSize == null) {
+	        return Collections.emptyList();
+	    }
+	    return productsService.showAllProducts(pageNumber, pageSize, sortField,sortOrder);
 	}
+
 
 }

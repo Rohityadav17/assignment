@@ -16,8 +16,7 @@ public interface ProductService {
 
 	Product deleteProducts(int productId) throws ProductNotFoundException;
 
-	List<Product> showAllProducts(Integer pageNumber, Integer pageSize);
+	List<Product> showAllProducts(Integer pageNumber, Integer pageSize, String sortField, String sortOrder);
 
-   
 
 }
