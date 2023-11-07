@@ -1,4 +1,5 @@
-package com.weather.weatherwebservice.feignclient;
+package com.example.ecom.service;
+
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

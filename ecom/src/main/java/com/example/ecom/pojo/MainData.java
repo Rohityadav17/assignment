@@ -1,4 +1,4 @@
-package com.weather.weatherwebservice.pojo;
+package com.example.ecom.pojo;
 
 
 public class MainData {

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.example.ecom.exception.ProductNotFoundException;
 import com.example.ecom.entity.Product;
-import com.example.ecom.entity.User;
 
 public interface ProductService {
 

@@ -6,8 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.example.ecom.exception.ProductNotFoundException;
+
 import com.example.ecom.entity.Product;
+import com.example.ecom.exception.ProductNotFoundException;
 import com.example.ecom.repository.ProductRepo;
 import com.example.ecom.service.ProductService;
 import java.util.Collections;

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.weather.weatherwebservice.pojo.WeatherData;
-import com.weather.weatherwebservice.service.WeatherService;
+import com.example.ecom.pojo.WeatherData;
+import com.example.ecom.service.WeatherService;
 
 @RestController
 @RequestMapping("/weather")
@@ -23,8 +23,8 @@ public class WeatherController {
    
 
     @GetMapping("/getWeather")
-    public List<WeatherData> getWeather(@RequestParam String city) {
-    	System.out.println("Inside Controller");
+    public List<WeatherData> getWeather(@RequestParam String city){
+    System.out.println("Inside Controller");
         List<WeatherData> weatherData = weatherService.getWeatherForecastFor30Days(city);
         return weatherData; 
     }
