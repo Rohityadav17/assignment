@@ -17,8 +17,8 @@ public class RegisterApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RegisterApplication.class, args);
 	}
-	/*
 	
+	/*
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new  RestTemplate();

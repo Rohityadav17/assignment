@@ -12,4 +12,6 @@ public class WeatherResponse {
     public void setList(List<WeatherData> list) {
         this.list = list;
     }
+
+	
 }

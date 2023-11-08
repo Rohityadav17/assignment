@@ -30,6 +30,7 @@ public class WeatherService {
 			System.out.println("Service Executed");
             return forecast;
         }
+		System.out.println("Service Executed");
 
         return Collections.emptyList();
 	}
