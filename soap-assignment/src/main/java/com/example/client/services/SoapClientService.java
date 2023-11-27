@@ -20,7 +20,7 @@ public class SoapClientService {
         String response = numberConversionSoapType.numberToWords(ubiNum);
         return response;
     }
-    
+
     public String convertNumberToDollars(double number) {
         BigDecimal bigDeci = BigDecimal.valueOf(number);
         String response = numberConversionSoapType.numberToDollars(bigDeci);

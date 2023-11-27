@@ -19,7 +19,7 @@ public class SoapController {
     public String convertNumberToWords(@PathVariable int number) {
         return soapClientService.convertNumberToWords(number);
     }
-    
+
     @GetMapping("/dollars/{number}")
     public String convertNumberToDollars(@PathVariable double number) {
         return soapClientService.convertNumberToDollars(number);
