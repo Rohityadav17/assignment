@@ -1,27 +1,66 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
+import { Link } from "react-router-dom";
 
 function Menus() {
   return (
     <ListGroup>
-      <ListGroupItem tag="a" href="/" action>
+      <Link
+        className="list-group-item list-group-item-action"
+        tag="a"
+        to="/home"
+        action
+      >
         Home
-      </ListGroupItem>
-      <ListGroupItem tag="a" href="/add-product" action>
+      </Link>
+      <Link
+        className="list-group-item list-group-item-action"
+        tag="a"
+        to="/add-product"
+        action
+      >
         Add Product
-      </ListGroupItem>
-      <ListGroupItem tag="a" href="/view-products" action>
+      </Link>
+      <Link
+        className="list-group-item list-group-item-action"
+        tag="a"
+        to="/view-products"
+        action
+      >
         View Products
-      </ListGroupItem>
-      <ListGroupItem tag="a" href="/update" action>
+      </Link>
+      <Link
+        className="list-group-item list-group-item-action"
+        tag="a"
+        to="/update"
+        action
+      >
         Update Product
-      </ListGroupItem>
-      <ListGroupItem tag="a" href="/About" action>
+      </Link>
+      <Link
+        className="list-group-item list-group-item-action"
+        tag="a"
+        to="/delete"
+        action
+      >
+        Delete Product
+      </Link>
+      <Link
+        className="list-group-item list-group-item-action"
+        tag="a"
+        to="/About"
+        action
+      >
         About
-      </ListGroupItem>
-      <ListGroupItem tag="a" href="/Contact" action>
+      </Link>
+      <Link
+        className="list-group-item list-group-item-action"
+        tag="a"
+        to="/Contact"
+        action
+      >
         Contact
-      </ListGroupItem>
+      </Link>
     </ListGroup>
   );
 }
