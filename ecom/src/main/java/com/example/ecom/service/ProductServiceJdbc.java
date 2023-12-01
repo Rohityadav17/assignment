@@ -9,7 +9,7 @@ public interface ProductServiceJdbc {
 
 	int saveProduct(Product p);
 
-	Product updateProductById(Product newDetails);
+	Product updateProductById(Product newDetails) throws ProductNotFoundException;
 
 	String deleteProductById(int id);
 

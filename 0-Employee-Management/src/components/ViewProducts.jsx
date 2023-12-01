@@ -1,22 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchProducts, deleteProduct } from "../redux/actions/productActions";
 import { Table, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
 const ViewProducts = ({ products, error, fetchProducts }) => {
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const hasFetchedData = useRef(false);
+
+  useEffect(() => {
+    if (!hasFetchedData.current) {
+      console.log("inside useEffect of view products");
+      fetchProducts();
+      hasFetchedData.current = true;
+    }
+  }, [fetchProducts]);
 
   const handleDelete = (productId) => {
     dispatch(deleteProduct(productId));
   };
 
   const handleUpdate = (productId) => {
-    navigate("update/productId");
+    navigate(`/update/${productId}`);
   };
 
   return (

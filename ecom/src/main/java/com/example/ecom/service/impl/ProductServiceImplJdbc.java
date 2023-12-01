@@ -3,6 +3,8 @@ package com.example.ecom.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.ecom.dao.ProductDao;
@@ -23,9 +25,13 @@ public class ProductServiceImplJdbc implements ProductServiceJdbc {
 	}
 
 	@Override
-	public Product updateProductById(Product newDetails) {
-		int result = productDao.updateProductByJdbcTemplate(newDetails);
-		return null;
+	public Product updateProductById(Product newDetails) throws ProductNotFoundException {
+            int result = productDao.updateProductByJdbcTemplate(newDetails);
+            if (result > 0) {
+                return newDetails;
+            } else {
+                throw new ProductNotFoundException("Product with ID " + newDetails.getProductId() + " not found.");
+            }
 	}
 
 	@Override

@@ -1,0 +1,12 @@
+
+.card {
+  position: fixed;
+  top: 0;
+  height: 13%; 
+  min-height: 80px; 
+}
+
+.row {
+  align-items: center;
+}
+

@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddProduct from "./components/AddProduct";
 import ViewProducts from "./components/ViewProducts";
-import UpdateProducts from "./components/UpdateProducts";
+import UpdateProduct from "./components/UpdateProduct";
 import LoginForm from "./components/LoginForm";
 import { Container, Row, Col } from "reactstrap";
 import Register from "./components/Register";
@@ -14,16 +14,16 @@ import store from "./redux/store";
 
 function App() {
   return (
-    <div>
-      <Provider store={store}>
+    <Provider store={store}>
+      <div id="app-container">
         <Router>
           <Header />
-          <Container>
+          <Container className="content">
             <Routes>
               <Route path="/" Component={ViewProducts} exact />
               <Route
-                path="/update/productId"
-                Component={UpdateProducts}
+                path="/update/:productId"
+                Component={UpdateProduct}
                 exact
               />
               <Route path="/home" Component={Home} exact />
@@ -33,10 +33,10 @@ function App() {
               <Route path="/signup" Component={Register} exact />
             </Routes>
           </Container>
-          <FooterComponent />
+          <FooterComponent class="footer" />
         </Router>
-      </Provider>
-    </div>
+      </div>
+    </Provider>
   );
 }
 

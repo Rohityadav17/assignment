@@ -3,6 +3,8 @@ package com.example.ecom.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,10 +36,20 @@ public class ProductControllerJdbc {
 		return psJdbc.saveProduct(products);
 	}
 
-	@PutMapping("/update")
+	/* @PutMapping("/update")
 	public Product updateProductById(@Validated @RequestBody Product products) throws ProductNotFoundException {
 		return psJdbc.updateProductById(products);
-	}
+	}  */
+	
+	@PutMapping("/update")
+    public ResponseEntity<?> updateProductById(@Validated @RequestBody Product newDetails) {
+        try {
+            Product updatedProduct = psJdbc.updateProductById(newDetails);
+            return ResponseEntity.ok(updatedProduct);
+        } catch (ProductNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 
 	@DeleteMapping("/delete/{productsId}")
 	public String deleteProducts(@PathVariable int productsId) throws ProductNotFoundException {

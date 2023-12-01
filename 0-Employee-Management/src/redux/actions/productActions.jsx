@@ -36,3 +36,19 @@ export const addProduct = (formData) => (dispatch) => {
       return Promise.reject(error);
     });
 };
+
+export const updateProductAction = (productId, updatedData) => (dispatch) => {
+  return axios
+    .put(`http://localhost:9090/products/jdbc/update`, updatedData)
+    .then(() => {
+      dispatch({
+        type: "UPDATE_PRODUCT_SUCCESS",
+        payload: { productId, updatedData },
+      });
+      return Promise.resolve();
+    })
+    .catch((error) => {
+      dispatch({ type: "UPDATE_PRODUCT_FAILURE", payload: error.message });
+      return Promise.reject(error);
+    });
+};

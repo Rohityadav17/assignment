@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/actions/productActions";
 import { useNavigate } from "react-router-dom";
 
-const AddProduct = ({ onSubmit }) => {
+const AddProduct = () => {
   const [formData, setFormData] = useState({
     productId: 0,
     productName: "",

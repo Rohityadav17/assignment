@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, CardBody, Row, Col, Container } from "reactstrap";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
+import "../styles/Header.css";
 
 function Header() {
   const navigate = useNavigate();
@@ -16,9 +17,9 @@ function Header() {
 
   return (
     <div>
-      <Card className="my-2 bg-warning">
+      <Card className="my-2 bg-warning card">
         <CardBody>
-          <Row className="align-items-center">
+          <Row className="align-items-center row">
             <Col xs="6" className="text-center">
               <h1 className="my-2">Welcome To Products Management System</h1>
             </Col>
