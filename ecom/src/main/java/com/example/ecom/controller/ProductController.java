@@ -61,8 +61,8 @@ public class ProductController {
 
 	// read
 	@GetMapping("/show")
-	public List<Product> getAllProducts(@RequestParam(value = "pageNumber") Integer pageNumber,
-	        @RequestParam(value = "pageSize") Integer pageSize,
+	public List<Product> getAllProducts(@RequestParam(value = "pageNumber",required=false,defaultValue="0") Integer pageNumber,
+	        @RequestParam(value = "pageSize",defaultValue="1000") Integer pageSize,
 	        @RequestParam(value = "sortField", required = false, defaultValue = "productId") String sortField,
 	        @RequestParam(value = "sortOrder", required = false, defaultValue = "ascending") String sortOrder) {
 	    System.out.println("PageNumber: " + pageNumber + " PageSize:" + pageSize);

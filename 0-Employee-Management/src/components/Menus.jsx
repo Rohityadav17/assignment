@@ -32,22 +32,6 @@ function Menus() {
       <Link
         className="list-group-item list-group-item-action"
         tag="a"
-        to="/update"
-        action
-      >
-        Update Product
-      </Link>
-      <Link
-        className="list-group-item list-group-item-action"
-        tag="a"
-        to="/delete"
-        action
-      >
-        Delete Product
-      </Link>
-      <Link
-        className="list-group-item list-group-item-action"
-        tag="a"
         to="/About"
         action
       >
