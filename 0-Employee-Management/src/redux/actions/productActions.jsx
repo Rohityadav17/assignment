@@ -16,11 +16,9 @@ export const deleteProduct = (productId) => (dispatch) => {
     .delete(`http://localhost:9090/products/remove/${productId}`)
     .then(() => {
       dispatch({ type: "DELETE_PRODUCT_SUCCESS", payload: productId });
-      return Promise.resolve();
     })
     .catch((error) => {
       dispatch({ type: "DELETE_PRODUCT_FAILURE", payload: error.message });
-      return Promise.reject(error);
     });
 };
 
@@ -29,11 +27,9 @@ export const addProduct = (formData) => (dispatch) => {
     .post(`http://localhost:9090/products/jdbc/add`, formData)
     .then((response) => {
       dispatch({ type: "ADD_PRODUCT_SUCCESS", payload: formData });
-      return Promise.resolve();
     })
     .catch((error) => {
       dispatch({ type: "ADD_PRODUCT_FAILURE", payload: error.message });
-      return Promise.reject(error);
     });
 };
 
@@ -45,10 +41,8 @@ export const updateProductAction = (productId, updatedData) => (dispatch) => {
         type: "UPDATE_PRODUCT_SUCCESS",
         payload: { productId, updatedData },
       });
-      return Promise.resolve();
     })
     .catch((error) => {
       dispatch({ type: "UPDATE_PRODUCT_FAILURE", payload: error.message });
-      return Promise.reject(error);
     });
 };

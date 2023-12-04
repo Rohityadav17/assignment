@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateProductAction } from "../redux/actions/productActions";
 
-const UpdateProduct = ({ products }) => {
+const UpdateProduct = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products);
   const isFirstRender = useRef(true);
 
   const [formData, setFormData] = useState({
@@ -96,8 +97,4 @@ const UpdateProduct = ({ products }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  products: state.products.products,
-});
-
-export default connect(mapStateToProps, { updateProductAction })(UpdateProduct);
+export default UpdateProduct;
