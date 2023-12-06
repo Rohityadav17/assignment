@@ -1,18 +1,19 @@
 <div class="container my-3">
   <div id="carouselExample" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let image of getVisibleImages(); let i = index" [class.active]="i === 1">
+      <div class="carousel-item" *ngFor="let image of images; let i = index" [class.active]="i === currentIndex">
         <div class="d-flex justify-content-around position-relative">
-          <img class="d-block w-25 mx-2 rounded" [src]="getVisibleImages()[i - 1]" alt="Previous Slide" style="object-fit: cover;">
+          <img class="d-block w-25 mx-2 rounded" [src]="images[(i - 1 + images.length) % images.length]" alt="Previous Slide" style="object-fit: cover;">
           <button class="btn btn-secondary prev-btn" (click)="prev()">Previous</button>
           <img class="d-block w-50 mx-2 rounded" [src]="image" alt="Current Slide" style="object-fit: cover;">
-          <img class="d-block w-25 mx-2 rounded" [src]="getVisibleImages()[i + 1]" alt="Next Slide" style="object-fit: cover;">
+          <img class="d-block w-25 mx-2 rounded" [src]="images[(i + 1) % images.length]" alt="Next Slide" style="object-fit: cover;">
           <button class="btn btn-secondary next-btn" (click)="next()">Next</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
 

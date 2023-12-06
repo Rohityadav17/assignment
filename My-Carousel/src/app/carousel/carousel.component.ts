@@ -13,15 +13,6 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getVisibleImages(): string[] {
-    const visibleImages: string[] = [];
-    for (let i = -1; i <= 1; i++) {
-      const index = (this.currentIndex + i + this.images.length) % this.images.length;
-      visibleImages.push(this.images[index]);
-    }
-    return visibleImages;
-  }
-
   prev(): void {
     this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
