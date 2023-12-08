@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-  @Input() images: string[] = ['https://images.pexels.com/photos/9992332/pexels-photo-9992332.jpeg?auto=compress&cs=tinysrgb&w=600','https://images.pexels.com/photos/9992330/pexels-photo-9992330.jpeg?auto=compress&cs=tinysrgb&w=600','https://images.pexels.com/photos/9992435/pexels-photo-9992435.jpeg?auto=compress&cs=tinysrgb&w=600','https://images.pexels.com/photos/4676400/pexels-photo-4676400.jpeg?auto=compress&cs=tinysrgb&w=600']; 
+  @Input() images: string[] = []; 
   currentIndex = 0;
 
   constructor() {}

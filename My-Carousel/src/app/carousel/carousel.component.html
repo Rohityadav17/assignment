@@ -1,7 +1,7 @@
 <div class="container my-3">
   <div id="carouselExample" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item">
+      <div class="carousel-item" *ngFor="let image of images; let i = index" [class.active]="i === currentIndex">
         <div class="d-flex justify-content-around position-relative">
           <img class="d-block w-25 mx-2 rounded" [src]="getPreviousImage()" alt="Previous Slide" style="object-fit: cover;">
           <button class="btn btn-secondary prev-btn" (click)="prev()">Previous</button>
@@ -13,8 +13,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 
