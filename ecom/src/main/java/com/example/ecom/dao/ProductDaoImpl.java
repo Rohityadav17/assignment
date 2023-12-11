@@ -28,6 +28,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public int saveProductByJdbcTamplate(Product p) {
+		System.out.println("Inside save jdbc template DaoImpl");
 		String query = "insert into products(product_id,product_name, product_cost,category,description) values(?,?,?,?,?)";
 		int result = this.jdbcTemplate.update(query, p.getProductId(), p.getProductName(), p.getProductCost(),
 				p.getProductCategory(), p.getProductDescription());
@@ -58,7 +59,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product getProduct(int product_id) throws ProductNotFoundException {
-		System.out.println("Inside ProductDao");
+		System.out.println("Inside ProductDaoImpl");
 		String query = "SELECT * FROM products WHERE product_id = ?";
 		try {
 			RowMapper<Product> rowMapper = new RowMapperImpl();
@@ -73,6 +74,9 @@ public class ProductDaoImpl implements ProductDao {
 			throw new ProductNotFoundException("Error fetching product: " + dae.getMessage());
 		}
 	}
+	
+	
+	
 
 	@Override
 	public List<Product> getProducts() {

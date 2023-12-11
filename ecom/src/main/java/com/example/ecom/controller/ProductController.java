@@ -29,7 +29,6 @@ public class ProductController {
 	@Autowired
 	private ProductServiceImpl productsService;
 
-	// create
 	@PostMapping("/add")
 	public Product addProduct(@Validated @RequestBody Product products) {
 		if (products == null || products.getProductName() == null || products.getProductCost() <= 0) {
@@ -39,19 +38,17 @@ public class ProductController {
 		return productsService.addProducts(products);
 	}
 
-	// update
 	@PutMapping("/update")
 	public Product updateProducts(@Validated @RequestBody Product products) throws ProductNotFoundException {
 		return productsService.updateProducts(products);
 	}
 
-	// delete
+
 	@DeleteMapping("/remove/{productsId}")
 	public Product removeProducts(@PathVariable int productsId) throws ProductNotFoundException {
 		return productsService.deleteProducts(productsId);
 	}
 
-	// read
 	@GetMapping("/view/{productsId}")
 	public Product getProducts(@PathVariable int productsId) throws ProductNotFoundException {
 		Product products = new Product();
@@ -59,7 +56,7 @@ public class ProductController {
 		return productsService.viewProducts(products);
 	}
 
-	// read
+
 	@GetMapping("/show")
 	public List<Product> getAllProducts(@RequestParam(value = "pageNumber",required=false,defaultValue="0") Integer pageNumber,
 	        @RequestParam(value = "pageSize",defaultValue="1000") Integer pageSize,
